@@ -340,45 +340,47 @@ NOT ac -> ad&&&
 NOT hn -> ho
 '''
 
-lut = {}
-for line in inp.split('&&&'):
-	line = line.split()
-	if line[1] == '->':
-		lut[line[-1]] = int(line[0]) if line[0].isdigit() else line[0]
-	elif line[1] == 'AND':
-		lut[line[-1]] = ('and', line[0], line[2])
-	elif line[1] == 'LSHIFT':
-		lut[line[-1]] = ('lshift', line[0], line[2])
-	elif line[1] == 'RSHIFT':
-		lut[line[-1]] = ('rshift', line[0], line[2])
-	elif line[1] == 'OR':
-		lut[line[-1]] = ('or', line[0], line[2])
-	elif line[0] == 'NOT':
-		lut[line[-1]] = ('not', line[1])
+def make_lut(inp):
+	lut = {}
+	for line in inp.split('&&&'):
+		line = line.split()
+		if line[1] == '->':
+			lut[line[-1]] = int(line[0]) if line[0].isdigit() else line[0]
+		elif line[1] == 'AND':
+			lut[line[-1]] = ('and', line[0], line[2])
+		elif line[1] == 'LSHIFT':
+			lut[line[-1]] = ('lshift', line[0], line[2])
+		elif line[1] == 'RSHIFT':
+			lut[line[-1]] = ('rshift', line[0], line[2])
+		elif line[1] == 'OR':
+			lut[line[-1]] = ('or', line[0], line[2])
+		elif line[0] == 'NOT':
+			lut[line[-1]] = ('not', line[1])
+	return lut
 
-def eval(s):
+def eval(s, lut):
 	if type(s) is str and s.isdigit(): return int(s)
 
-	global lut
 	val = lut[s]
 
 	if type(val) is int: return val
 
 	if type(val) is str:
-		res = eval(val)
+		res = eval(val, lut)
 	elif val[0] == 'and':
-		res = eval(val[1]) & eval(val[2])
+		res = eval(val[1], lut) & eval(val[2], lut)
 	elif val[0] == 'lshift':
-		res = eval(val[1]) << eval(val[2])
+		res = eval(val[1], lut) << eval(val[2], lut)
 	elif val[0] == 'rshift':
-		res = eval(val[1]) >> eval(val[2])
+		res = eval(val[1], lut) >> eval(val[2], lut)
 	elif val[0] == 'or':
-		res = eval(val[1]) | eval(val[2])
+		res = eval(val[1], lut) | eval(val[2], lut)
 	elif val[0] == 'not':
-		res = ~ eval(val[1])
+		res = ~ eval(val[1], lut)
 
 	lut[s] = str(res)
 
 	return res
 
-print eval('a') # 46065
+print eval('a', make_lut(inp)) # 46065
+print eval('a', make_lut(inp.replace('1674 -> b', '46065 -> b'))) # 14134
