@@ -18,3 +18,19 @@ for i in xrange(1, len(inp)):
 		num = []
 
 print res # 111754
+
+import json
+
+def get_sum(json_obj):
+    if type(json_obj) is list:
+        return sum(get_sum(obj) for obj in json_obj)
+    elif type(json_obj) is dict:
+        if 'red' in json_obj.values():
+            return 0
+        return sum(get_sum(v) for v in json_obj.values())
+    elif type(json_obj) is int:
+        return json_obj
+    else:
+        return 0
+
+print get_sum(json.loads(inp)) # 65402
