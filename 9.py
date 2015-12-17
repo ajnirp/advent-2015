@@ -54,3 +54,5 @@ def get_dist(idx1, idx2):
 def get_path_dist(path): return sum(get_dist(path[i], path[i+1]) for i in xrange(len(path)-1))
 
 print min(get_path_dist(path) for path in paths) # 141
+
+print max(get_path_dist(path) for path in paths) # 736
