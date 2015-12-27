@@ -11,13 +11,17 @@ Prancer can fly 25 km/s for 6 seconds, but then must rest for 143 seconds.
 
 class Reindeer:
     def __init__(self, speed, fly_time, rest_time):
+        # attributes used in part 1 and part 2
         self.speed = speed # speed in km/s
         self.fly_time = fly_time # max possible flying time in s
         self.rest_time = rest_time # time reqd for rest in s
         self.flying = True # is the reindeer currently flying?
         self.flown = 0 # distance covered in km
-        self.fly_time_left = fly_time
-        self.rest_time_left = 0
+
+        # attributes used only in part 2
+        self.fly_time_left = fly_time # how many seconds more can the reindeer fly?
+        self.rest_time_left = 0 # how many seconds more does the reindeer need to rest?
+        self.points = 0
 
     # returns the distance attained by the reindeer
     # after total_t seconds
@@ -37,6 +41,22 @@ class Reindeer:
                 self.flown += self.speed * time_left
                 break
 
+    # tick the clock by 1 sec for self
+    def advance(self):
+        if not self.flying:
+            if self.rest_time_left > 0:
+                self.rest_time_left -= 1
+                return
+            else:
+                self.flying = True
+                self.fly_time_left = self.fly_time
+        if self.fly_time_left > 0:
+            self.fly_time_left -= 1
+            self.flown += self.speed
+        if self.fly_time_left == 0:
+            self.flying = False
+            self.rest_time_left = self.rest_time
+
 reindeer = []
 for line in inp.split('.\n')[:-1]:
     split = line.strip().split()
@@ -46,3 +66,18 @@ for r in reindeer:
     r.fly(2503)
 
 print max(r.flown for r in reindeer) # 2660
+
+reindeer = []
+for line in inp.split('.\n')[:-1]:
+    split = line.strip().split()
+    reindeer.append(Reindeer(int(split[3]), int(split[6]), int(split[-2])))
+
+for t in xrange(2503):
+    for i, r in enumerate(reindeer):
+        r.advance()
+    leader = max(reindeer, key=lambda r: r.flown)
+    for r in reindeer:
+        if r.flown == leader.flown:
+            r.points += 1
+
+print max(r.points for r in reindeer) # 1256
