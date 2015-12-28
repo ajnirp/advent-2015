@@ -25,6 +25,7 @@ class Reindeer:
 
     # returns the distance attained by the reindeer
     # after total_t seconds
+    # solves only part 1
     def fly(self, total_t):
         t = 0
         while t <= total_t:
@@ -42,6 +43,7 @@ class Reindeer:
                 break
 
     # tick the clock by 1 sec for self
+    # solves parts 1 and 2
     def advance(self):
         if not self.flying:
             if self.rest_time_left > 0:
@@ -62,16 +64,6 @@ for line in inp.split('.\n')[:-1]:
     split = line.strip().split()
     reindeer.append(Reindeer(int(split[3]), int(split[6]), int(split[-2])))
 
-for r in reindeer:
-    r.fly(2503)
-
-print max(r.flown for r in reindeer) # 2660
-
-reindeer = []
-for line in inp.split('.\n')[:-1]:
-    split = line.strip().split()
-    reindeer.append(Reindeer(int(split[3]), int(split[6]), int(split[-2])))
-
 for t in xrange(2503):
     for i, r in enumerate(reindeer):
         r.advance()
@@ -79,5 +71,7 @@ for t in xrange(2503):
     for r in reindeer:
         if r.flown == leader.flown:
             r.points += 1
+
+print max(r.flown for r in reindeer) # 2660
 
 print max(r.points for r in reindeer) # 1256
