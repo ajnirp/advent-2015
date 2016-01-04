@@ -62,3 +62,18 @@ for lhs in rules:
 			res.add(inp[:m.start()] + rhs + inp[m.end():])
 
 print len(res) # 535
+
+rev_rules = {v:k for k,vs in rules.items() for v in vs}
+
+def dfs(s, steps, rules, target):
+    for lhs in rules:
+        rhs = rules[lhs]
+        for m in re.finditer(lhs, s):
+            new_s = s[:m.start()] + rhs + s[m.end():]
+            if new_s == target:
+                print steps+1 # 212
+                exit(0)
+            dfs(new_s, steps+1, rules, target)
+
+# reverse depth first search
+dfs(inp, 0, rev_rules, 'e')
