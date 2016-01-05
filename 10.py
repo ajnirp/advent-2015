@@ -11,12 +11,12 @@ def rle(n):
 	return ''.join(str(p[0]) + p[1] for p in res)
 
 out = inp
-for i in xrange(40):
+for i in range(40):
 	out = rle(out)
 
-print len(out) # 252594
+print(len(out)) # 252594
 
-for i in xrange(10):
+for i in range(10):
 	out = rle(out)
 
-print len(out) # 3579328
+print(len(out)) # 3579328

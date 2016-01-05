@@ -504,7 +504,7 @@ import ast
 candidates = []
 for line in inp.split('\n'):
     line = line[(1 + line.find(':')):]
-    split = map(lambda x: x.strip(), line.split(','))
+    split = [x.strip() for x in line.split(',')]
     candidates.append({})
     for stat in split:
         split_stat = stat.split(':')
@@ -528,8 +528,8 @@ for line in inp.split('\n'):
     target[split[0]] = int(split[1][1:])
 
 for idx, candidate in enumerate(candidates):
-    if all(target[k] == v for k, v in candidate.items()):
-        print 1 + idx # 373
+    if all(target[k] == v for k, v in list(candidate.items())):
+        print(1 + idx) # 373
         break
 
 gt = ['cats', 'trees']
@@ -537,7 +537,7 @@ lt = ['pomeranians', 'goldfish']
 
 for idx, candidate in enumerate(candidates):
     found = True
-    for k, v in candidate.items():
+    for k, v in list(candidate.items()):
         if k in gt and target[k] >= v:
             found = False
         if k in lt and target[k] <= v:
@@ -545,5 +545,5 @@ for idx, candidate in enumerate(candidates):
         if k not in lt and k not in gt and target[k] != v:
             found = False
     if found:
-        print 1+idx # 260
+        print(1+idx) # 260
         break

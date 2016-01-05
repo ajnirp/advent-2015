@@ -111,8 +111,8 @@ def count_live_neighbours(grid, r, c):
 
 def step(grid):
 	res = [[cell for cell in row] for row in grid]
-	for row in xrange(len(grid)):
-		for col in xrange(len(grid[row])):
+	for row in range(len(grid)):
+		for col in range(len(grid[row])):
 			count = count_live_neighbours(grid, row, col)
 			if grid[row][col] == '#' and count not in [2, 3]:
 				res[row][col] = '.'
@@ -120,10 +120,10 @@ def step(grid):
 				res[row][col] = '#'
 	return res
 
-for i in xrange(100):
+for i in range(100):
 	grid = step(grid)
 
-print sum(sum(cell == '#' for cell in row) for row in grid) # 821
+print(sum(sum(cell == '#' for cell in row) for row in grid)) # 821
 
 def set_corners(grid):
 	grid[0][0] = '#'
@@ -134,8 +134,8 @@ def set_corners(grid):
 grid = init_grid(inp)
 set_corners(grid)
 
-for i in xrange(100):
+for i in range(100):
 	grid = step(grid)
 	set_corners(grid)
 
-print sum(sum(cell == '#' for cell in row) for row in grid) # 886
+print(sum(sum(cell == '#' for cell in row) for row in grid)) # 886

@@ -67,13 +67,13 @@ for line in inp.split('.')[:-1]:
 
 # generate a list of lists, where each list
 # is a permutation of [0, 1, 2, ..., n-1]
-def gen_perms(n): return [[0]] if n == 1 else [ls[:i] + [n-1] + ls[i:] for ls in gen_perms(n-1) for i in xrange(0, len(ls)+1)]
+def gen_perms(n): return [[0]] if n == 1 else [ls[:i] + [n-1] + ls[i:] for ls in gen_perms(n-1) for i in range(0, len(ls)+1)]
 
 names.remove('Alice')
 names = list(names)
 
 orders = gen_perms(len(names))
-for i in xrange(len(orders)):
+for i in range(len(orders)):
     orders[i].append(len(names))
     orders[i].append(orders[i][0])
 
@@ -84,19 +84,19 @@ def get_change(idx1, idx2):
     name1, name2 = names[idx1], names[idx2]
     return change[(name1, name2)] if (name1, name2) in change else change[(name2, name1)]
 
-def get_net_change(order): return sum(get_change(order[i], order[i+1]) + get_change(order[i+1], order[i]) for i in xrange(len(order)-1))
+def get_net_change(order): return sum(get_change(order[i], order[i+1]) + get_change(order[i+1], order[i]) for i in range(len(order)-1))
 
-print max(get_net_change(order) for order in orders) # 618
+print(max(get_net_change(order) for order in orders)) # 618
 
 for name in names:
     change[('Me', name)] = 0
     change[(name, 'Me')] = 0
 
 orders = gen_perms(len(names))
-for i in xrange(len(orders)):
+for i in range(len(orders)):
     orders[i].append(len(names))
     orders[i].append(orders[i][0])
 
 names.append('Me')
 
-print max(get_net_change(order) for order in orders) # 601
+print(max(get_net_change(order) for order in orders)) # 601

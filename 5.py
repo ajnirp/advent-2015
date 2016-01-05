@@ -1001,11 +1001,11 @@ gtjscincktlwwkkf
 wtebigbaythklkbd
 '''
 
-print sum(not sum(c in 'aeiou' for c in s) < 3 and
+print(sum(not sum(c in 'aeiou' for c in s) < 3 and
           any(x[0] == x[1] for x in zip(' '+s, s)) and
           not any(combo in s for combo in ['ab', 'cd', 'pq', 'xy'])
-          for s in inp.split()) # 236
+          for s in inp.split())) # 236
 
-print sum(any(s[i] == s[i+2] for i in xrange(len(s)-2)) and
-          any(s[i:i+2] in s[:i] or s[i:i+2] in s[i+2:] for i in xrange(len(s)-1))
-          for s in inp.split()) # 51
+print(sum(any(s[i] == s[i+2] for i in range(len(s)-2)) and
+          any(s[i:i+2] in s[:i] or s[i:i+2] in s[i+2:] for i in range(len(s)-1))
+          for s in inp.split())) # 51

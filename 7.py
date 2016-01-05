@@ -382,5 +382,5 @@ def eval(s, lut):
 
 	return res
 
-print eval('a', make_lut(inp)) # 46065
-print eval('a', make_lut(inp.replace('1674 -> b', '46065 -> b'))) # 14134
+print(eval('a', make_lut(inp))) # 46065
+print(eval('a', make_lut(inp.replace('1674 -> b', '46065 -> b')))) # 14134

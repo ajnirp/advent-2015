@@ -1013,4 +1013,4 @@ for i in inp.split():
     res1 += ans1
     res2 += 2*(l+w) + l*w*h
 
-print res1, res2 # 1588178 3783758
+print(res1, res2) # 1588178 3783758

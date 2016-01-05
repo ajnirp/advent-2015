@@ -24,6 +24,6 @@ for s in contents.split("\n"):
         else:
             i += 1
 
-print res # 1350
+print(res) # 1350
 
-print sum(2 + sum(c in "\"\\" for c in s) for s in contents.split("\n")) # 2085
+print(sum(2 + sum(c in "\"\\" for c in s) for s in contents.split("\n"))) # 2085

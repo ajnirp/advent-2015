@@ -310,15 +310,15 @@ def parse(line):
         action = s[0]
         coords = (s[1], s[3])
     return (action,
-            map(int, coords[0].split(',')),
-            map(int, coords[1].split(',')))
+            list(map(int, coords[0].split(','))),
+            list(map(int, coords[1].split(','))))
 
-state = [[False for x in xrange(1000)] for y in xrange(1000)]
+state = [[False for x in range(1000)] for y in range(1000)]
 
 for line in inp.split('D'):
     action, [x1,y1], [x2,y2] = parse(line)
-    for x in xrange(x1,x2+1):
-        for y in xrange(y1,y2+1):
+    for x in range(x1,x2+1):
+        for y in range(y1,y2+1):
             if action == 'on':
                 state[x][y] = True
             elif action == 'off':
@@ -326,14 +326,14 @@ for line in inp.split('D'):
             else:
                 state[x][y] = not state[x][y]
 
-print sum(sum(line) for line in state) # 377891
+print(sum(sum(line) for line in state)) # 377891
 
-state = [[0 for x in xrange(1000)] for y in xrange(1000)]
+state = [[0 for x in range(1000)] for y in range(1000)]
 
 for line in inp.split('D'):
     action, [x1,y1], [x2,y2] = parse(line)
-    for x in xrange(x1,x2+1):
-        for y in xrange(y1,y2+1):
+    for x in range(x1,x2+1):
+        for y in range(y1,y2+1):
             if action == 'on':
                 state[x][y] += 1
             elif action == 'off':
@@ -343,4 +343,4 @@ for line in inp.split('D'):
             else:
                 state[x][y] += 2
 
-print sum(sum(line) for line in state) # 14110788
+print(sum(sum(line) for line in state)) # 14110788
