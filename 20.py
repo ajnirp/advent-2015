@@ -25,7 +25,7 @@ def presents_recd(n):
 i = 1000
 while True:
     if presents_recd(i) >= inp:
-        print i # 786240
+        print(i) # 786240
         break
     i += 1
 
@@ -42,8 +42,10 @@ while True:
         factors.remove(f)
     presents = 11 * sum(factors)
     if presents > inp:
-        print i # 831600
+        print(i) # 831600
         break
     i += 1
 
-# note: with pypy, on my machine, this takes nearly 7 sec + 15 sec
+# note: with pypy, total time ~= 22s
+# with python3: total time ~= 5m6s
+# with pypy3: total time ~= 24s

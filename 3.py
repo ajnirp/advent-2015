@@ -11,7 +11,7 @@ for c in inp:
     if (x,y) not in seen:
         seen.add((x,y))
 
-print len(seen)
+print(len(seen)) # 2592
 
 seen = set()
 x,y,p,q = 0,0,0,0
@@ -34,4 +34,4 @@ for c in inp:
             seen.add((p,q))
     even = not even
 
-print len(seen)
+print(len(seen)) # 2360

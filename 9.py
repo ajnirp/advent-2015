@@ -42,7 +42,7 @@ names = list(names)
 
 # generate a list of lists, where each list
 # is a permutation of [0, 1, 2, ..., n-1]
-def gen_perms(n): return [[0]] if n == 1 else [ls[:i] + [n-1] + ls[i:] for ls in gen_perms(n-1) for i in xrange(0, len(ls)+1)]
+def gen_perms(n): return [[0]] if n == 1 else [ls[:i] + [n-1] + ls[i:] for ls in gen_perms(n-1) for i in range(0, len(ls)+1)]
 
 paths = gen_perms(8)
 
@@ -51,8 +51,8 @@ def get_dist(idx1, idx2):
 	place1, place2 = names[idx1], names[idx2]
 	return dist[(place1, place2)] if (place1, place2) in dist else dist[(place2, place1)]
 
-def get_path_dist(path): return sum(get_dist(path[i], path[i+1]) for i in xrange(len(path)-1))
+def get_path_dist(path): return sum(get_dist(path[i], path[i+1]) for i in range(len(path)-1))
 
-print min(get_path_dist(path) for path in paths) # 141
+print(min(get_path_dist(path) for path in paths)) # 141
 
-print max(get_path_dist(path) for path in paths) # 736
+print(max(get_path_dist(path) for path in paths)) # 736

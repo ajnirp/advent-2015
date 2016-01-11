@@ -2,22 +2,14 @@ import hashlib
 
 inp = 'bgvyzdsv'
 
-i = 1
-while True:
-    key = inp + str(i)
-    out = hashlib.md5(key).hexdigest()
-    if out.startswith('00000'):
-        break
-    i += 1
+def find_first(target):
+    i = 1
+    while True:
+        key = (inp + str(i)).encode('utf-8')
+        out = hashlib.md5(key).hexdigest()
+        if out.startswith(target):
+            break
+        i += 1
+    return i
 
-print i
-
-i = 1
-while True:
-    key = inp + str(i)
-    out = hashlib.md5(key).hexdigest()
-    if out.startswith('000000'):
-        break
-    i += 1
-
-print i
+print(find_first('00000'), find_first('000000')) # 254575 1038736

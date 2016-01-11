@@ -2,7 +2,7 @@ inp = '''()()(()()()(()()((()((()))((()((((()()((((()))()((((())(((((((()(((((((
 
 opened = sum(c == '(' for c in inp)
 closed = len(inp) - opened
-print opened - closed # 280
+print(opened - closed) # 280
 
 floor = 0
 for i, c in enumerate(inp):
@@ -11,5 +11,5 @@ for i, c in enumerate(inp):
     else:
         floor -= 1
     if floor == -1:
-        print i+1 # 1797
+        print(i+1) # 1797
         break

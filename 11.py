@@ -9,15 +9,15 @@ def is_allowed(s):
     if 'i' in s or 'o' in s or 'l' in s:
         return False
     found_consec_trio = False
-    for i in xrange(len(s)-2):
+    for i in range(len(s)-2):
         if 1 == ord(s[i+1]) - ord(s[i]) == ord(s[i+2]) - ord(s[i+1]):
             found_consec_trio = True
             break
     if not found_consec_trio:
         return False
-    found_pair = [False for i in xrange(26)]
+    found_pair = [False for i in range(26)]
     for c in 'abcdefghijklmnopqrstuvwxyz':
-        if any(s[i] == s[i+1] == c for i in xrange(len(s)-1)):
+        if any(s[i] == s[i+1] == c for i in range(len(s)-1)):
             found_pair[ord(c)-97] = True
     if sum(found_pair) < 2:
         return False
@@ -29,7 +29,7 @@ while True:
         break
     out = inc(out)
 
-print out # cqjxxyzz
+print(out) # cqjxxyzz
 
 out = inc(out)
 while True:
@@ -37,4 +37,4 @@ while True:
         break
     out = inc(out)
 
-print out
+print(out) # cqkaabcc

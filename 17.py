@@ -15,4 +15,4 @@ def combinations(target, buckets, buckets_used):
     combos_without = combinations(target, buckets[:-1], buckets_used)
     return combos_with + combos_without
 
-print combinations(150, sorted(inp), 0), ways[min(ways)] # 654 57
+print(combinations(150, sorted(inp), 0), ways[min(ways)]) # 654 57

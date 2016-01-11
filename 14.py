@@ -64,7 +64,7 @@ for line in inp.split('.\n')[:-1]:
     split = line.strip().split()
     reindeer.append(Reindeer(int(split[3]), int(split[6]), int(split[-2])))
 
-for t in xrange(2503):
+for t in range(2503):
     for i, r in enumerate(reindeer):
         r.advance()
     leader = max(reindeer, key=lambda r: r.flown)
@@ -72,6 +72,6 @@ for t in xrange(2503):
         if r.flown == leader.flown:
             r.points += 1
 
-print max(r.flown for r in reindeer) # 2660
+print(max(r.flown for r in reindeer)) # 2660
 
-print max(r.points for r in reindeer) # 1256
+print(max(r.points for r in reindeer)) # 1256
