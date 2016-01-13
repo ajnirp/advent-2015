@@ -63,7 +63,8 @@ def receive_boss_damage():
         damage = 1
     player_hp -= damage
 
-def simulate_fight():
-    player_turn = True
-    while player_hp > 0 and boss_hp > 0:
-
+# optimal = using the least amount of mana
+# returns the minimum amount of mana that should be
+# spent by the player to win
+def optimal_strategy(player_hp, player_mana, player_armor, boss_hp):
+    case1 = 
